@@ -40,10 +40,11 @@ public class A101pages {
 
     @FindBy(name ="city")
     public WebElement sehirBox;
-    @FindBy(name ="townhip")
+    @FindBy(css ="select[name='township']")
     public WebElement ilceBox;
     @FindBy(name ="district")
     public WebElement mahalleBox;
+
     @FindBy(xpath ="//button[@type='submit'][1]")
     public WebElement kaydetVeDvmEtBtn;
 

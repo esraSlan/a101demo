@@ -45,6 +45,7 @@ public class A101StepDefinition {
     @Then("Tum dizalti siyah coraplar secilir")
     public void tum_dizalti_siyah_coraplar_secilir() {
         js.executeScript("arguments[0].click();", patika.TumSiyahCorap);
+        Driver.wait(2);
 
     }
 
@@ -67,7 +68,7 @@ public class A101StepDefinition {
     @Then("Sepeti Onayla butonuna tiklar")
     public void sepeti_onayla_butonuna_tiklar() {
         ReusableMethods.waitForClickablility(patika.sepetiOnaylaBtn,2);
-        js.executeScript("arguments[0].click();", patika.sepeteEkleButon);
+        js.executeScript("arguments[0].click();", patika.sepetiOnaylaBtn);
     }
 
     @Then("uye olmadan devam et butonuna tiklar")
@@ -84,20 +85,23 @@ public class A101StepDefinition {
 
     @Then("gelen ekrana gecerli bilgiler girerek bir adres olusturur")
     public void gelen_ekrana_gecerli_bilgiler_girerek_bir_adres_olusturur() {
-        actions.sendKeys(patika.adresBasligi,"ev") .
+        actions.click(patika.yeniAdres).sendKeys(patika.adresBasligi,"ev") .
                 sendKeys(Keys.TAB).sendKeys("esra").sendKeys(Keys.TAB).sendKeys("Aslan").
                 sendKeys(Keys.TAB).sendKeys("5436561234").perform();
 
         Select dropdown = new Select(patika.sehirBox);
-        dropdown.selectByValue("1");
-        dropdown = new Select(patika.ilceBox);
-        dropdown.selectByValue("2");
+        dropdown.selectByVisibleText("ADANA");
+        Driver.wait(2);
+         dropdown = new Select(patika.ilceBox);
+         dropdown.selectByVisibleText("ALADAĞ");
+        Driver.wait(2);
         dropdown = new Select(patika.mahalleBox);
-        dropdown.selectByValue("3");
-        actions.sendKeys(Keys.TAB).sendKeys("cicek sk. no:10").sendKeys(Keys.TAB).click().perform();
+        dropdown.selectByVisibleText("MANSURLU MAH");
+        actions.sendKeys(Keys.TAB).sendKeys("cicek sk. no:10").sendKeys(Keys.TAB).sendKeys(Keys.ENTER).perform();
+
     }
 
-    @Then("Odeme ekranina gelir ")
+    @Then("Odeme ekranina gelir")
     public void odeme_ekranina_gelir() {
         ReusableMethods.waitForVisibility(patika.kaydetVeDvmEtBtn,2);
         patika.kaydetVeDvmEtBtn.submit();
