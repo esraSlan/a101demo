@@ -115,14 +115,14 @@ public class A101StepDefinition {
     @Then("kullanici siparisi tamamla butonuna tiklar")
     public void kullanici_siparisi_tamamla_butonuna_tiklar() {
 
-       // ReusableMethods.waitForVisibility(patika.siparisiTmmlaBtn,2);
-   //     js.executeScript("arguments[0].click();", patika.siparisiTmmlaBtn);
+       ReusableMethods.waitForVisibility(patika.siparisiTmmlaBtn,2);
+      js.executeScript("arguments[0].click();", patika.siparisiTmmlaBtn);
 
     }
 
     @Then("odeme ekranina gidildigi dogrulanir")
     public void odeme_ekranina_gidildigi_dogrulanir() {
-       // ReusableMethods.waitForVisibility(patika.odemeEkrani,2);
+        ReusableMethods.waitForVisibility(patika.odemeEkrani,2);
         Assert.assertTrue(patika.odemeEkrani.isDisplayed());
         Driver.getDriver().quit();
 
