@@ -1,4 +1,4 @@
-Feature: Kullanici bir ürün secip sepete ekleyebilmeli ve odeme yapabilmelidir
+Feature: Kullanici bir urun secip sepete ekleyebilmeli ve odeme yapabilmelidir
   @a101
   Scenario: Kullanici istedigi urunu alabilmedir
     Given  Kullanici "anaSayfa"ya gider

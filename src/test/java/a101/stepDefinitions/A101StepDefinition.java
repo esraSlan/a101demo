@@ -79,45 +79,50 @@ public class A101StepDefinition {
 
     @Then("gelen ekrana gecerli bir email girer")
     public void gelen_ekrana_gecerli_bir_email_girer() {
-        actions.sendKeys(patika.userEmail,"esas12@gmail.com").click(patika.dvmEtBtn).perform();
+        actions.sendKeys(patika.userEmail,faker.internet().emailAddress()).click(patika.dvmEtBtn).perform();
 
     }
 
     @Then("gelen ekrana gecerli bilgiler girerek bir adres olusturur")
     public void gelen_ekrana_gecerli_bilgiler_girerek_bir_adres_olusturur() {
         actions.click(patika.yeniAdres).sendKeys(patika.adresBasligi,"ev") .
-                sendKeys(Keys.TAB).sendKeys("esra").sendKeys(Keys.TAB).sendKeys("Aslan").
-                sendKeys(Keys.TAB).sendKeys("5436561234").perform();
+                sendKeys(Keys.TAB).sendKeys(faker.name().firstName()).sendKeys(Keys.TAB).sendKeys(faker.name().lastName()).
+                sendKeys(Keys.TAB).sendKeys(faker.phoneNumber().subscriberNumber(11)).perform();
 
         Select dropdown = new Select(patika.sehirBox);
-        dropdown.selectByVisibleText("ADANA");
+        dropdown.selectByVisibleText("İSTANBUL");
         Driver.wait(2);
          dropdown = new Select(patika.ilceBox);
-         dropdown.selectByVisibleText("ALADAĞ");
+         dropdown.selectByVisibleText("BEYKOZ");
         Driver.wait(2);
         dropdown = new Select(patika.mahalleBox);
-        dropdown.selectByVisibleText("MANSURLU MAH");
-        actions.sendKeys(Keys.TAB).sendKeys("cicek sk. no:10").sendKeys(Keys.TAB).sendKeys(Keys.ENTER).perform();
+        dropdown.selectByVisibleText("KANLICA MAH");
+        actions.sendKeys(Keys.TAB).sendKeys("rose street no:10").perform();
+        js.executeScript("window.scrollBy(0,250)",patika.adresKaydet);
+        js.executeScript("arguments[0].click();", patika.adresKaydet);
+        Driver.wait(2);
+
 
     }
 
     @Then("Odeme ekranina gelir")
     public void odeme_ekranina_gelir() {
         ReusableMethods.waitForVisibility(patika.kaydetVeDvmEtBtn,2);
-        patika.kaydetVeDvmEtBtn.submit();
+        js.executeScript("arguments[0].click();", patika.kaydetVeDvmEtBtn);
 
     }
 
     @Then("kullanici siparisi tamamla butonuna tiklar")
     public void kullanici_siparisi_tamamla_butonuna_tiklar() {
 
-        ReusableMethods.waitForVisibility(patika.siparisiTmmlaBtn,2);
-        patika.siparisiTmmlaBtn.submit();
+       // ReusableMethods.waitForVisibility(patika.siparisiTmmlaBtn,2);
+   //     js.executeScript("arguments[0].click();", patika.siparisiTmmlaBtn);
+
     }
 
     @Then("odeme ekranina gidildigi dogrulanir")
     public void odeme_ekranina_gidildigi_dogrulanir() {
-        ReusableMethods.waitForVisibility(patika.odemeEkrani,2);
+       // ReusableMethods.waitForVisibility(patika.odemeEkrani,2);
         Assert.assertTrue(patika.odemeEkrani.isDisplayed());
         Driver.getDriver().quit();
 

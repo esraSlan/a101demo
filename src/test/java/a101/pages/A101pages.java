@@ -26,7 +26,6 @@ public class A101pages {
     public WebElement sepetiGoruntuleBtn;
     @FindBy(linkText ="Sepeti Onayla")
     public WebElement sepetiOnaylaBtn;
-    //a[@title="Sepeti Onayla"][2]
     @FindBy(linkText ="ÜYE OLMADAN DEVAM ET")
     public WebElement uyeOmdnDvmEtBtn;
     @FindBy(name ="user_email")
@@ -44,14 +43,16 @@ public class A101pages {
     public WebElement ilceBox;
     @FindBy(name ="district")
     public WebElement mahalleBox;
+    @FindBy(xpath ="//button[contains(text(),'KAYDET')]")
+    public WebElement adresKaydet;
 
-    @FindBy(xpath ="//button[@type='submit'][1]")
+    @FindBy(xpath ="//button[contains(text(),'Kaydet ve Devam Et')]")
     public WebElement kaydetVeDvmEtBtn;
 
     @FindBy(xpath ="//span[@class='order-complete']")
     public WebElement siparisiTmmlaBtn;
 
-    @FindBy(xpath =" //div[@class='card']")
+    @FindBy(xpath ="//div[contains(text(),'Kart ile ödeme')]")
     public WebElement odemeEkrani;
 
 
